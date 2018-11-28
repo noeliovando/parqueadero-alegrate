@@ -25,6 +25,17 @@ var controller = {
       });
     });
   },
+  getCeldaEtiqueta: function (req,res) {
+    var celdaEtiqueta = req.params.etiqueta;
+    if(celdaEtiqueta == null) return res.status(404).send({message: 'La celda no existe'});
+    Celda.find({etiqueta: celdaEtiqueta}).exec((err, celda) => {
+      if(err) return res.status(500).send({message: 'Error al devolver los datos.'});
+      if(!celda) return res.status(404).send({message: 'La celda no existe.'});
+      return res.status(200).send({
+        celda
+      });
+    });
+  },
   getCeldas: function (req, res) {
     Celda.find({}).exec((err, celdas) => {
       if(err) return res.status(500).send({message: 'Error al devolver los datos.'});

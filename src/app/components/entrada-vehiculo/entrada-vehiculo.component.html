@@ -1,0 +1,39 @@
+<section class="section">
+  <div class="container">
+
+    <h2 class="subtitle">
+      <span class="icon is-medium">
+        <span class="fa-stack fa-md">
+          <i class="fas fa-car"></i>
+        </span>
+      </span>
+      {{title}}
+    </h2>
+    <div class="has-text-success" *ngIf="status == 'success'">
+      Se ha creado correctamente el evento.
+    </div>
+    <div class="" *ngIf="status == 'failed'">
+      Error al crear el evento.
+    </div>
+    <form #eventoForm="ngForm" (ngSubmit)="onSubmit(eventoForm)">
+      <div class="field">
+        <label class="label" for="placa">Placa</label>
+        <div class="control">
+          <input class="input" type="text" id="placa" name="placa" #placa="ngModel" [ngClass]="{'input is-danger': placa.touched && !placa.valid,'input': true}" [(ngModel)]="evento.placa" required/>
+          <span class="help is-danger" *ngIf="placa.touched && !placa.valid">La placa es obligatoria</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="modelo">Modelo</label>
+        <div class="control">
+          <input class="input" type="text" id="modelo" name="modelo" #modelo="ngModel" [ngClass]="{'input is-danger': modelo.touched && !modelo.valid,'input': true}" [(ngModel)]="evento.modelo" required/>
+          <span class="help is-danger" *ngIf="modelo.touched && !modelo.valid">El modelo es obligatoria</span>
+        </div>
+      </div>
+      <div class="control">
+        <button class="button is-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</section>

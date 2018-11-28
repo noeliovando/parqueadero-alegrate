@@ -23,10 +23,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/css/bulma.css",
-              "src/assets/css/bulma.min.css"
+              "./node_modules/bulma/css/bulma.min.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {

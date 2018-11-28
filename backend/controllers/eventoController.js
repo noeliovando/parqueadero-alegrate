@@ -10,6 +10,7 @@ var controller = {
     evento.id = params.id;
     evento.type = params.type;
     evento.celda = params.celda;
+    evento.modelo = params.modelo;
     evento.placa = params.placa;
     evento.fecha = params.fecha;
 
@@ -28,6 +29,13 @@ var controller = {
       return res.status(200).send({
         evento: eventoUpdated
       });
+    });
+  },
+  getEventos: function (req, res) {
+    Evento.find({}).exec((err, eventos) => {
+      if(err) return res.status(500).send({message: 'Error al devolver los datos.'});
+      if(!eventos) return res.status(404).send({message: 'Los eventos no existen.'});
+      return res.status(200).send({eventos});
     });
   },
 };

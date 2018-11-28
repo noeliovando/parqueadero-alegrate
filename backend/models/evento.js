@@ -4,11 +4,12 @@ var mongoose = require ('mongoose');
 var Schema = mongoose.Schema;
 
 var EventoSchema = Schema({
-  id: Number,
+  id: String,
   type: String,
   celda: String,
   placa: String,
-  fecha: Date
+  modelo: String,
+  fecha: String
 });
 
 module.exports = mongoose.model('Evento',EventoSchema);
