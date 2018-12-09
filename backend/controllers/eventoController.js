@@ -1,15 +1,16 @@
 'use strict'
 
-var Evento = require('../models/evento');
+const Evento = require('../models/evento');
 
-var controller = {
+const controller = {
   saveEvento: function (req,res) {
-    var evento = new Evento();
+    const evento = new Evento();
 
-    var params = req.body;
+    const params = req.body;
     evento.id = params.id;
     evento.type = params.type;
-    evento.celda = params.celda;
+    evento.celdaIni = params.celdaIni;
+    evento.celdaFin = params.celdaFin;
     evento.modelo = params.modelo;
     evento.placa = params.placa;
     evento.fecha = params.fecha;
@@ -21,8 +22,8 @@ var controller = {
     });
   },
   updateEvento: function (req, res) {
-    var eventoId = req.params.id;
-    var update = req.body;
+    const eventoId = req.params.id;
+    const update = req.body;
     Evento.findByIdAndUpdate(eventoId, update, {new:true}, (err, eventoUpdated) => {
       if(err) return res.status(500).send({message: 'Error al devolver los datos.'});
       if(!eventoUpdated) return res.status(404).send({message: 'El evento no existe.'});
@@ -36,6 +37,42 @@ var controller = {
       if(err) return res.status(500).send({message: 'Error al devolver los datos.'});
       if(!eventos) return res.status(404).send({message: 'Los eventos no existen.'});
       return res.status(200).send({eventos});
+    });
+  },
+  getEvento: function (req, res) {
+    const eventoId = req.params.id;
+
+    if(eventoId === null) return res.status(404).send({message: 'El evento no existe'});
+    Evento.findById(eventoId, (err, evento) => {
+      if(err) return res.status(500).send({message: 'Error al devolver los datos.'});
+      if(!evento) return res.status(404).send({message: 'El evento no existe.'});
+      return res.status(200).send({
+        evento
+      });
+    });
+  },
+  getEventoPlaca: function (req, res) {
+    const eventoPlaca = req.params.placa;
+
+    if(eventoPlaca === null) return res.status(404).send({message: 'El evento no existe'});
+    Evento.find({placa: eventoPlaca}, (err, evento) => {
+      if(err) return res.status(500).send({message: 'Error al devolver los datos.'});
+      if(!evento) return res.status(404).send({message: 'El evento no existe.'});
+      return res.status(200).send({
+        evento
+      });
+    });
+  },
+  deleteEvento: function (req, res) {
+    const eventoId = req.params.id;
+
+    if(eventoId === null) return res.status(404).send({message: 'El evento no existe'});
+    Evento.findByIdAndDelete(eventoId, (err, eventoRemoved) => {
+      if(err) return res.status(500).send({message: 'No se ha podido borrar el evento.'});
+      if(!eventoRemoved) return res.status(404).send({message: 'El evento no existe.'});
+      return res.status(200).send({
+        eventoRemoved
+      });
     });
   },
 };

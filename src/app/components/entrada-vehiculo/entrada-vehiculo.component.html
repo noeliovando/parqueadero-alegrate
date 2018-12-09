@@ -12,7 +12,10 @@
     <div class="has-text-success" *ngIf="status == 'success'">
       Se ha creado correctamente el evento.
     </div>
-    <div class="" *ngIf="status == 'failed'">
+    <div class="has-text-danger" *ngIf="placaExist">
+      Ya el vehiculo está aparcado.
+    </div>
+    <div class="has-text-danger" *ngIf="status == 'failed'">
       Error al crear el evento.
     </div>
     <form #eventoForm="ngForm" (ngSubmit)="onSubmit(eventoForm)">

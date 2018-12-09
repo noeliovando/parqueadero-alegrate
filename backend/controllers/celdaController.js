@@ -43,8 +43,9 @@ var controller = {
       return res.status(200).send({celdas});
     });
   },
-  updateCeldas: function (req, res) {
+  updateCelda: function (req, res) {
     var celdaId = req.params.id;
+    console.log('Entro');
     var update = req.body;
     Celda.findByIdAndUpdate(celdaId, update, (err, celdaUpdated) => {
       if(err) return res.status(500).send({message: 'Error al devolver los datos.'});

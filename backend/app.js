@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 var app = express();
 
 //cargar archivos de rutas
-var vehiculo_routes = require('./routes/vehiculo');
 var evento_routes = require('./routes/evento');
 var celda_routes = require('./routes/celda');
 
@@ -24,7 +23,6 @@ app.use((req, res, next) => {
 });
 
 //rutas
-app.use('/api',vehiculo_routes);
 app.use('/api',evento_routes);
 app.use('/api',celda_routes);
 

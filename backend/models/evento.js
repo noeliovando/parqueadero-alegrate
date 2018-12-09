@@ -6,7 +6,8 @@ var Schema = mongoose.Schema;
 var EventoSchema = Schema({
   id: String,
   type: String,
-  celda: String,
+  celdaIni: String,
+  celdaFin:String,
   placa: String,
   modelo: String,
   fecha: String

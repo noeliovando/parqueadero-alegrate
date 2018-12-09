@@ -19,9 +19,9 @@
     <td>{{ evento.celda }}</td>
     <td>{{ evento.modelo }}</td>
     <td>{{ evento.placa }}</td>
-    <td >{{ evento.fecha }}</td>
+    <td >{{ this.temp }}</td>
     <td>
-      <a class="button is-info is-small" routerLink="/entrada-vehiculo" title="Edit spot">
+      <a class="button is-info is-small" (click)="createFactura(evento._id)" title="Generar factura">
         <i class="far fa-edit"></i>
       </a>
     </td>

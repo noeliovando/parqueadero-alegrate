@@ -10,6 +10,6 @@ router.post('/test', CeldaController.test);
 router.get('/celda/:id', CeldaController.getCelda);
 router.get('/celda-etiqueta/:etiqueta', CeldaController.getCeldaEtiqueta);
 router.get('/celdas', CeldaController.getCeldas);
-router.put('/celda/:id', CeldaController.updateCeldas);
+router.put('/update-celda/:id', CeldaController.updateCelda);
 
 module.exports = router;

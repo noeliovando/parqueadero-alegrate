@@ -23,10 +23,10 @@ export class CeldaService {
 
     return this._http.get(this.url + 'celda-etiqueta/' + etiqueta, { headers: headers });
   }
-  updateCeldas(celda): Observable<any> {
+  updateCelda(celda): Observable<any> {
     const params = JSON.stringify(celda);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this._http.put(this.url + 'celdas/' + celda._id, params, { headers: headers });
+    return this._http.put(this.url + 'update-celda/' + celda._id, params, { headers: headers });
   }
 }

@@ -15,6 +15,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { EventolistComponent } from './components/eventolist/eventolist.component';
+import { FacturaComponent } from './components/factura/factura.component';
+import { ItemsComponent } from './components/items/items.component';
+import { ApiConnectComponent } from './components/api-connect/api-connect.component';
 library.add(fas);
 
 @NgModule({
@@ -26,6 +29,9 @@ library.add(fas);
     EntradaVehiculoComponent,
     NavbarComponent,
     EventolistComponent,
+    FacturaComponent,
+    ItemsComponent,
+    ApiConnectComponent,
   ],
   imports: [
     BrowserModule,
