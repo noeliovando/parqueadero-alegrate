@@ -26,7 +26,7 @@ export class CeldaService {
   updateCelda(celda): Observable<any> {
     const params = JSON.stringify(celda);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
+    console.log(celda._id);
     return this._http.put(this.url + 'update-celda/' + celda._id, params, { headers: headers });
   }
 }

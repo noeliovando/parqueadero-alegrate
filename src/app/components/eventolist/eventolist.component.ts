@@ -4,14 +4,14 @@ import { Factura } from '../../models/factura';
 import { Item } from '../../models/item';
 import { Stamp } from '../../models/stamp';
 import { EventoService } from '../../services/evento.service';
-import { CeldaService} from '../../services/celda.service';
+import { CeldaService} from "../../services/celda.service";
 import { ApiconnectService} from '../../services/apiconnect.service';
 
 @Component({
   selector: 'app-eventolist',
   templateUrl: './eventolist.component.html',
   styleUrls: ['./eventolist.component.css'],
-  providers: [EventoService, ApiconnectService]
+  providers: [EventoService, ApiconnectService, CeldaService]
 })
 export class EventolistComponent implements OnInit {
   public  eventos: Evento[];
@@ -62,13 +62,28 @@ export class EventolistComponent implements OnInit {
           this.item = new Item(1, '30', this.temp, description);
           const year = (new Date(this.evento.fecha)).getFullYear();
           const month = (new Date(this.evento.fecha)).getMonth();
-          const day = (new Date(this.evento.fecha)).getDay();
+          const day = (new Date(this.evento.fecha)).getDate();
           const fechaFactura = year + '-' + month + '-' + day;
           console.log(fechaFactura);
           this.factura =  new Factura('', fechaFactura, fechaFactura, 2, [this.item], this.stamp);
           this._apiconnectService.createFactura(this.factura).subscribe(
             result2 => {
-              this._celdaService.getCeldaEtiqueta(response.evento.celdaFin)
+              this._celdaService.getCeldaEtiqueta(response.evento.celdaFin).subscribe(
+                result => {
+                  result.celda[0].estatus = 'libre';
+                  this._celdaService.updateCelda(result.celda[0]).subscribe(
+                    res => {
+                      console.log(res);
+                    },
+                    error => {
+                      console.log(<any>error);
+                    }
+                  );
+                },
+                error => {
+                  console.log(<any>error);
+                }
+              );
               this._eventoService.deleteEvento(response.evento._id).subscribe(
                 result => {
                   this.getEventos();

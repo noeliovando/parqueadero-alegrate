@@ -18,7 +18,6 @@ export class ApiconnectService {
     private _http: HttpClient
   ) {
     this.url = 'https://app.alegra.com/api/v1/';
-    // this.url = 'https://reqres.in/';
   }
   createFactura(factura: Factura): Observable<any> {
     this.factura = factura;
@@ -29,15 +28,6 @@ export class ApiconnectService {
     });
 
     return this._http.post(this.url + 'invoices', params, {headers: headers});
-  }
-
-  consultarContacto(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'Basic b3ZhbmRvbnNjQGdtYWlsLmNvbTphNjI0N2RkM2IwZjYwZTJlZDVkMQ=='
-    });
-
-    return this._http.get(this.url + 'contacts/1', {headers});
   }
 
 }

@@ -14,15 +14,6 @@ export class ApiConnectComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    this._apiconnectService.createFactura().subscribe(
-      result => {
-        console.log(result);
-      },
-      error => {
-        console.log(<any>error);
-      }
-    );
   }
 
 
