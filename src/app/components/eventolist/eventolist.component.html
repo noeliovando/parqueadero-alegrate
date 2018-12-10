@@ -1,11 +1,9 @@
 <table class="table">
   <thead>
   <tr>
-    <th>id</th>
-    <th>Tipo</th>
+    <th>Placa</th>
     <th>Celda</th>
     <th>Modelo</th>
-    <th>Placa</th>
     <th>Tiempo</th>
     <th>
       <a class="button is-primary is-small" routerLink="/entrada-vehiculo" title="Agregar Entrada"><i class="fas fa-plus"></i></a>
@@ -14,12 +12,10 @@
   </thead>
   <tbody>
   <tr *ngFor="let evento of eventos">
-    <td class="has-text-grey">{{ evento._id }}</td>
-    <td>{{ evento.type }}</td>
-    <td>{{ evento.celda }}</td>
-    <td>{{ evento.modelo }}</td>
     <td>{{ evento.placa }}</td>
-    <td >{{ this.temp }}</td>
+    <td>{{ evento.celdaIni }}</td>
+    <td>{{ evento.modelo }}</td>
+    <td>{{ evento.fecha }}</td>
     <td>
       <a class="button is-info is-small" (click)="createFactura(evento._id)" title="Generar factura">
         <i class="far fa-edit"></i>

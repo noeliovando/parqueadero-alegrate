@@ -4,7 +4,7 @@ import { Factura } from '../../models/factura';
 import { Item } from '../../models/item';
 import { Stamp } from '../../models/stamp';
 import { EventoService } from '../../services/evento.service';
-import { CeldaService} from "../../services/celda.service";
+import { CeldaService} from '../../services/celda.service';
 import { ApiconnectService} from '../../services/apiconnect.service';
 
 @Component({
@@ -40,7 +40,7 @@ export class EventolistComponent implements OnInit {
             const currentTime = +new Date();
             const tempTime = +new Date(evento.fecha);
             const temp = Math.abs((currentTime - tempTime) / 1000);
-            this.temp = temp.toString();
+            evento.fecha = temp.toString();
           });
         }
       },
@@ -64,7 +64,6 @@ export class EventolistComponent implements OnInit {
           const month = (new Date(this.evento.fecha)).getMonth();
           const day = (new Date(this.evento.fecha)).getDate();
           const fechaFactura = year + '-' + month + '-' + day;
-          console.log(fechaFactura);
           this.factura =  new Factura('', fechaFactura, fechaFactura, 2, [this.item], this.stamp);
           this._apiconnectService.createFactura(this.factura).subscribe(
             result2 => {

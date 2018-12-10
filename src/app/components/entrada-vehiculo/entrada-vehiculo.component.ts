@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from '../../models/evento';
 import { EventoService } from '../../services/evento.service';
+import { LogService } from '../../services/log.service';
 import { Item } from '../../models/item';
 import { ItemService } from '../../services/item.service';
 import { Celda } from '../../models/celda';
@@ -10,7 +11,7 @@ import { CeldaService } from '../../services/celda.service';
   selector: 'app-entrada-vehiculo',
   templateUrl: './entrada-vehiculo.component.html',
   styleUrls: ['./entrada-vehiculo.component.css'],
-  providers: [CeldaService, EventoService, ItemService]
+  providers: [CeldaService, EventoService, ItemService, LogService]
 })
 export class EntradaVehiculoComponent implements OnInit {
 
@@ -27,6 +28,7 @@ export class EntradaVehiculoComponent implements OnInit {
     private _eventoService: EventoService,
     private _celdaService: CeldaService,
     private _itemService: ItemService,
+    private _logService: LogService,
   ) {
     this.title = 'Entrada de Vehiculo';
     this.evento = new Evento('', 'Entrada', '', '', '', '', (new Date()).toString());
@@ -56,11 +58,9 @@ export class EntradaVehiculoComponent implements OnInit {
                   if (celda.estatus === 'libre') {
                     isOneFree = true;
                   }
+                });
                   do {
-                    console.log(res.evento.length);
-                    console.log(this.celdas[nCelda].posicion);
-                    if (nCelda - 1 >= 0) {console.log(this.celdas[nCelda - 1].estatus); }
-                    console.log(this.celdas[nCelda].estatus);
+                    console.log(this.celdas[nCelda].etiqueta);
                     if (this.celdas[nCelda].posicion === 'delante') {
                       if (nCelda - 1 >= 0 && this.celdas[nCelda - 1].estatus === 'libre') {
                         nCelda = nCelda - 1;
@@ -82,7 +82,6 @@ export class EntradaVehiculoComponent implements OnInit {
                       celdaAsignada = false;
                     }
                   } while (!celdaAsignada);
-                });
               }
               this.spotAsig = this.celdas[nCelda].etiqueta;
               this.celdas[nCelda].estatus = 'ocupado';
@@ -100,6 +99,14 @@ export class EntradaVehiculoComponent implements OnInit {
               this._eventoService.saveEvento(this.evento).subscribe(
                 result => {
                   if (result.evento) {
+                    this._logService.saveLog(this.evento).subscribe(
+                      res3 => {
+                        console.log(res3);
+                      },
+                      error => {
+                        console.log(<any>error);
+                      }
+                    );
                     this.status = 'success';
                     form.reset();
                   } else {

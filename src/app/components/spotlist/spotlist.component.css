@@ -1,0 +1,60 @@
+.row {
+  height: 50px;
+  display:table-row;
+
+}
+.col-left, .col-right {
+
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.col-left{
+  width: 50px;
+  background-color: #FFCC66 ;
+  text-align: center;
+}
+
+.col-left .content span{
+  font-size: 20px;
+}
+.column {
+  float: left;
+  width: 10%;
+  padding: 0;
+}
+.section {
+  padding: 1rem;
+}
+.lab-variace {
+  background: #ff6800;
+  color: #fff;
+  border-radius: 15px;
+  border-collapse: separate;
+  padding: 0.6em;
+  margin: 0.2em;
+  cursor: pointer;
+  width: 50px;
+  display: table-cell;
+  border: 5px #fff solid;
+  height: 10px;
+  background-clip:padding-box;
+}
+
+.lab-variace:hover {
+  background:#ccc;
+}
+
+.radio-varia:checked + .lab-variace{
+  background: red;
+  background-clip:padding-box;
+}
+
+.variace{
+  margin-bottom: 15px;
+}
+
+.radio-varia{
+  visibility: hidden !important;
+  position: absolute !important;
+}

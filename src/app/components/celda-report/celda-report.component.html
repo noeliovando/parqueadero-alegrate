@@ -1,3 +1,19 @@
-<p>
-  celda-report works!
-</p>
+<section class="section">
+  <div class="container">
+    <h2 class="subtitle"><i class="fas fa-car"></i> Reporte de Celdas</h2>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Celda</th>
+        <th>Usos</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let top of tops; let i=index">
+        <td *ngIf="i<5">{{ top.celda }}</td>
+        <td *ngIf="i<5">{{ top.apariciones }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

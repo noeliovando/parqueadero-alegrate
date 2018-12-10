@@ -1,0 +1,14 @@
+<div id="variace" >
+  <div class="row" >
+    <div class="column" *ngFor="let celda of celdasBack">
+      <input type="radio" class="radio-varia">
+      <label class="lab-variace" [ngStyle]="{'background-color':celda.estatus === 'libre' ? 'limegreen' : 'red' }">{{celda.etiqueta}}</label>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="column" *ngFor="let celda of celdasFront">
+      <input type="radio" class="radio-varia">
+      <label class="lab-variace" [ngStyle]="{'background-color':celda.estatus === 'libre' ? 'limegreen' : 'red' }">{{celda.etiqueta}}</label>
+    </div>
+  </div>
+</div>

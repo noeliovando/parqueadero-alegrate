@@ -5,7 +5,6 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { VehiculoComponent } from './vehiculo/vehiculo.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CeldaReportComponent } from './components/celda-report/celda-report.component';
 import { EntradaVehiculoComponent } from './components/entrada-vehiculo/entrada-vehiculo.component';
@@ -18,12 +17,12 @@ import { EventolistComponent } from './components/eventolist/eventolist.componen
 import { FacturaComponent } from './components/factura/factura.component';
 import { ItemsComponent } from './components/items/items.component';
 import { ApiConnectComponent } from './components/api-connect/api-connect.component';
+import { SpotlistComponent } from './components/spotlist/spotlist.component';
 library.add(fas);
 
 @NgModule({
   declarations: [
     AppComponent,
-    VehiculoComponent,
     DashboardComponent,
     CeldaReportComponent,
     EntradaVehiculoComponent,
@@ -32,6 +31,7 @@ library.add(fas);
     FacturaComponent,
     ItemsComponent,
     ApiConnectComponent,
+    SpotlistComponent,
   ],
   imports: [
     BrowserModule,
