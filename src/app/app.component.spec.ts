@@ -1,5 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -28,4 +31,14 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to parqueadero-alegrate!');
   });
+});
+describe('AppComponent', () => {
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent,
+        NavbarComponent
+      ]
+    }).compileComponents();
+  }));
 });
